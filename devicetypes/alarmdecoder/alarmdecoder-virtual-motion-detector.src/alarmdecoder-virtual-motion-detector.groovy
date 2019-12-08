@@ -1,5 +1,5 @@
 /**
- *  Virtual Contact Sensor for alarm panel zones
+ *  Virtual Motion Detector for alarm panel zones
  *
  *  Copyright 2016-2019 Nu Tech Software Solutions, Inc.
  *
@@ -24,38 +24,40 @@ import groovy.transform.Field
 
 metadata {
   definition(
-    name: "AlarmDecoder virtual contact sensor",
+    name: "AlarmDecoder virtual motion detector",
     namespace: APPNAMESPACE,
     author: "Nu Tech Software Solutions, Inc.") {
-    capability "Contact Sensor"
+    capability "Motion Sensor"
 	capability "Tamper Alert"
 	attribute "low_battery", "bool"
 	attribute "last_checkin", "number"
   }
 
   // tile definitions
-  tiles {
-    standardTile(
-      "sensor",
-      "device.contact",
-      width: 2, height: 2,
-      canChangeIcon: true) {
-      state(
-        "closed",
-        label: '${name}',
-        icon: "st.contact.contact.closed",
-        backgroundColor: "#00a0dc")
-      state(
-        "open",
-        label: '${name}',
-        icon: "st.contact.contact.open",
-        backgroundColor: "#e86d13")
+  tiles(scale: 2) {
+    multiAttributeTile(
+      name: "motion",
+      type: "generic",
+      width: 6, height: 4) {
+      tileAttribute(
+        "device.motion",
+        key: "PRIMARY_CONTROL") {
+        attributeState(
+          "active",
+          label: 'motion',
+          icon: "st.motion.motion.active",
+          backgroundColor: "#53a7c0")
+        attributeState(
+          "inactive",
+          label: 'no motion',
+          icon: "st.motion.motion.inactive",
+          backgroundColor: "#ffffff")
+      }
     }
-    main "sensor"
-    details "sensor"
+    main "motion"
+    details "motion"
   }
 
-  // preferences
   preferences {
     input(
       name: "invert",
@@ -65,31 +67,31 @@ metadata {
       " Changes ON/OFF,OPEN/CLOSE,DETECTED/CLEAR",
       required: false)
     input(
-      name: "zone", type:
-      "number", title: "Zone Number",
+      name: "zone",
+      type: "number",
+      title: "Zone Number",
       description: "Zone # required for zone events.",
       required: false)
     input(
       name: "serial", type:
       "string", title: "Serial Number",
-	  submitOnChange: true,
       description: "The serial number of an RF device.",
       required: false)
 	if (serial != null) {
       input(
         name: "zoneLoop", type:
         "number", title: "Zone Loop", 
-	    range: "1..4",
+		range: "1..4",
         description: "The loop to use for zone open/close.",
         required: true)
       input(
         name: "tamperLoop", type:
         "number", title: "Tamper Loop",
-	    range: "1..4",
+		range: "1..4",
         description: "The loop to use to detect tamper.",
-	    defaultValue: 4,
+		defaultValue: 4,
         required: false)	  
-	  }
+	}	  
   }
 }
 
@@ -116,4 +118,22 @@ def updated() {
   updateDataValue("serial", serial)
   updateDataValue("zoneLoop", zoneLoop.toString())
   updateDataValue("tamperLoop", tamperLoop.toString())
+}
+
+// FIXME: what?
+def parse(String description) {
+  if (description != "updated") {
+    if (parent.debug)
+      log.info "parse returned:${description}"
+    def pair = description.split(":")
+    createEvent(name: pair[0].trim(), value: pair[1].trim())
+  }
+}
+
+def active() {
+  sendEvent(name: "motion", value: "active")
+}
+
+def inactive() {
+  sendEvent(name: "motion", value: "inactive")
 }

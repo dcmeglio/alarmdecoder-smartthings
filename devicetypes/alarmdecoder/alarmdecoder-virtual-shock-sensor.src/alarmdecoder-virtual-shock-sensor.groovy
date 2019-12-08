@@ -1,5 +1,5 @@
 /**
- *  Virtual Momentary Switch Indicator for alarm panel
+ *  Virtual Shock Sensor for alarm panel
  *
  *  Copyright 2016-2019 Nu Tech Software Solutions, Inc.
  *
@@ -24,36 +24,36 @@ import groovy.transform.Field
 
 metadata {
   definition(
-    name: "AlarmDecoder action button indicator",
+    name: "AlarmDecoder virtual shock sensor",
     namespace: APPNAMESPACE,
     author: "Nu Tech Software Solutions, Inc.") {
-    capability "Switch"
-    capability "Momentary"
-    command "push"
-    command "on"
-    command "off"
+    capability "ShockSensor"
+	capability "Tamper Alert"
+	attribute "low_battery", "bool"
+	attribute "last_checkin", "number"
   }
 
   // tile definitions
   tiles {
     standardTile(
-      "switch",
-      "device.switch",
+      "sensor",
+      "device.smoke",
       width: 2, height: 2,
       canChangeIcon: true) {
       state(
-        "off",
-        label: 'Push',
-        action: "momentary.push",
-        backgroundColor: "#ffffff")
+        "clear",
+        label: '${name}',
+        icon: "st.alarm.smoke.clear",
+        backgroundColor: "#79b821")
       state(
-        "on",
-        label: 'Push',
-        action: "momentary.push",
-        backgroundColor: "#00a0dc")
+        "detected",
+        label: '${name}',
+        icon: "st.alarm.smoke.smoke",
+        backgroundColor: "#e86d13"
+      )
     }
-    main "switch"
-    details "switch"
+    main "sensor"
+    details "sensor"
   }
 
   // preferences
@@ -71,8 +71,27 @@ metadata {
       title: "Zone Number",
       description: "Zone # required for zone events.",
       required: false)
+    input(
+      name: "serial", type:
+      "string", title: "Serial Number",
+      description: "The serial number of an RF device.",
+      required: false)
+	if (serial != null) {
+      input(
+        name: "zoneLoop", type:
+        "number", title: "Zone Loop", 
+		range: "1..4",
+        description: "The loop to use for zone open/close.",
+        required: true)
+      input(
+        name: "tamperLoop", type:
+        "number", title: "Tamper Loop",
+		range: "1..4",
+        description: "The loop to use to detect tamper.",
+		defaultValue: 4,
+        required: false)	  
+	}	  
   }
-
 }
 
 /**
@@ -87,24 +106,15 @@ metadata {
 def installed() {
   updateDataValue("invert", invert.toString())
   updateDataValue("zone", zone.toString())
+  updateDataValue("serial", serial)
+  updateDataValue("zoneLoop", zoneLoop.toString())
+  updateDataValue("tamperLoop", tamperLoop.toString())
 }
 
 def updated() {
   updateDataValue("invert", invert.toString())
   updateDataValue("zone", zone.toString())
-}
-
-// Send the request to the service for processing.
-def push() {
-  if (parent.debug)
-    log.debug "AlarmDecoderActionButtonIndicator: Executing 'actionButton'"
-  parent.actionButton(device.getDeviceNetworkId())
-}
-
-def on() {
-  push()
-}
-
-def off() {
-  push()
+  updateDataValue("serial", serial)
+  updateDataValue("zoneLoop", zoneLoop.toString())
+  updateDataValue("tamperLoop", tamperLoop.toString())
 }
