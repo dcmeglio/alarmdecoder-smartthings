@@ -70,7 +70,7 @@ preferences {
 metadata {
   definition(
     name: "AlarmDecoder network appliance",
-    namespace: APPNAMESPACE, author: "Nu Tech Software Solutions, Inc.") {
+    namespace: "alarmdecoder", author: "Nu Tech Software Solutions, Inc.") {
 
     // capabilities
     capability "Refresh"

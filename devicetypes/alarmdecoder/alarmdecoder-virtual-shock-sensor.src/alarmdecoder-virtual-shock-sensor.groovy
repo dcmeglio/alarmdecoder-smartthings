@@ -25,7 +25,7 @@ import groovy.transform.Field
 metadata {
   definition(
     name: "AlarmDecoder virtual shock sensor",
-    namespace: APPNAMESPACE,
+    namespace: "alarmdecoder",
     author: "Nu Tech Software Solutions, Inc.") {
     capability "ShockSensor"
 	capability "Tamper Alert"

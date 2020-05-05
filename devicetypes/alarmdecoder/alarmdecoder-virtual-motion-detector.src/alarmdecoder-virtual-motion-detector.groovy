@@ -25,7 +25,7 @@ import groovy.transform.Field
 metadata {
   definition(
     name: "AlarmDecoder virtual motion detector",
-    namespace: APPNAMESPACE,
+    namespace: "alarmdecoder",
     author: "Nu Tech Software Solutions, Inc.") {
     capability "Motion Sensor"
 	capability "Tamper Alert"

@@ -25,7 +25,7 @@ import groovy.transform.Field
 metadata {
   definition(
     name: "AlarmDecoder virtual carbon monoxide detector",
-    namespace: APPNAMESPACE,
+    namespace: "alarmdecoder",
     author: "Nu Tech Software Solutions, Inc.") {
     capability "CarbonMonoxideDetector"
 	capability "Tamper Alert"	
