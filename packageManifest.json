@@ -1,0 +1,84 @@
+{
+  "packageName": "AlarmDecoder Integration",
+  "author": "Nu Tech Software Solutions, Inc. & Dominick Meglio",
+  "minimumHEVersion": "2.1.9",
+  "licenseFile": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/LICENSE",
+  "dateReleased": "2020-05-05",
+  "apps": [
+    {
+      "id": "142765a9-eb5e-4847-8ae5-8a1e9824ca8a",
+      "name": "AlarmDecoder service",
+      "namespace": "alarmdecoder",
+      "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/smartapps/alarmdecoder/alarmdecoder-service.src/alarmdecoder-service.groovy",
+      "required": true,
+      "oauth": false,
+      "version": "3.0.0"
+    }
+  ],
+  "drivers": [
+    {
+      "id": "6e604410-e47b-47b4-a0c2-6e017be9218b",
+      "name": "AlarmDecoder action button indicator",
+      "namespace": "alarmdecoder",
+      "location": "https://github.com/dcmeglio/alarmdecoder-smartthings/raw/master/devicetypes/alarmdecoder/alarmdecoder-action-button-indicator.src/alarmdecoder-action-button-indicator.groovy",
+      "required": true,
+      "version": "3.0.0"
+    },
+    {
+      "id": "4276d079-020a-4f2e-a145-57c5d450c81b",
+      "name": "AlarmDecoder network appliance",
+      "namespace": "alarmdecoder",
+      "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-network-appliance.src/alarmdecoder-network-appliance.groovy",
+      "required": true,
+      "version": "3.0.0"
+    },
+    {
+      "id": "8b4f6484-4549-4173-a57e-d69fa0ca0bc2",
+      "name": "AlarmDecoder status indicator",
+      "namespace": "alarmdecoder",
+      "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-status-indicator.src/alarmdecoder-status-indicator.groovy",
+      "required": true,
+      "version": "3.0.0"
+    },
+    {
+      "id": "d8aa9c49-7121-4070-8da2-6871f4b99301",
+      "name": "AlarmDecoder virtual carbon monoxide detector",
+      "namespace": "alarmdecoder",
+      "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-virtual-carbon-monoxide-detector.src/alarmdecoder-virtual-carbon-monoxide-detector.groovy",
+      "required": true,
+      "version": "3.0.0"
+    },
+    {
+      "id": "d869ea74-9c56-47e4-ac0b-8e40b503cda8",
+      "name": "AlarmDecoder virtual contact sensor",
+      "namespace": "alarmdecoder",
+      "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-virtual-contact-sensor.src/alarmdecoder-virtual-contact-sensor.groovy",
+      "required": true,
+      "version": "3.0.0"
+    },
+    {
+      "id": "a559fe06-b07c-4960-b154-5fc395dfe874",
+      "name": "AlarmDecoder virtual motion detector",
+      "namespace": "alarmdecoder",
+      "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-virtual-motion-detector.src/alarmdecoder-virtual-motion-detector.groovy",
+      "required": true,
+      "version": "3.0.0"
+    },
+    {
+      "id": "3c933ee2-aa24-4525-a632-849162b8fbc6",
+      "name": "AlarmDecoder virtual shock sensor",
+      "namespace": "alarmdecoder",
+      "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-virtual-shock-sensor.src/alarmdecoder-virtual-shock-sensor.groovy",
+      "required": true,
+      "version": "3.0.0"
+    },
+    {
+      "id": "d5b76152-0690-49ee-9943-f4a7fedd2e2d",
+      "name": "AlarmDecoder virtual smoke alarm",
+      "namespace": "alarmdecoder",
+      "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-virtual-smoke-alarm.src/alarmdecoder-virtual-smoke-alarm.groovy",
+      "required": true,
+      "version": "3.0.0"
+    }
+  ]
+}
