@@ -4,7 +4,7 @@
 -   [Requirements](#requirements)
 -   [Features](#features)
 -   [Setup](#setup)  
-    -- [Install device handlers (via github integration)](#install-device-handlers--via-github-integration-)  
+    -- [Install Package](#install-package)  
     -- [Install SmartApp (via github integration)](#install-smartapp--via-github-integration-)  
     -- [Obtain an API key from the AlarmDecoder webapp](#obtain-an-api-key-from-the-alarmdecoder-webapp)  
     -- [Enabling SmartThings/Hubitat UPNP/SSDP Integration in the Webapp](#enabling-smartthings-hubitat-upnp-ssdp-integration-in-the-webapp)  
@@ -18,14 +18,13 @@
 
 # Introduction
 
-This project provides support for the AlarmDecoder webapp UPNP/SSDP integration with SmartThings or Hubitat home automation platforms.
+This project provides support for the AlarmDecoder webapp UPNP/SSDP integration with Hubitat home automation platforms.
 
 # Requirements
 
 The AlarmDecoder webapp and hub use UDP broadcast packets for discovery. The hub and webapp must be located on the same layer 2 network.
 
 -   AlarmDecoder webapp 0.8.3+   
--   SmartThings or Hubitat hub  
 
 # Features
 
@@ -47,47 +46,9 @@ The AlarmDecoder webapp and hub use UDP broadcast packets for discovery. The hub
 
 Navigate to <https://graph.api.smartthings.com> in your browser and login to your account.
 
-## Install device handlers (via github integration)
+## Install Package
 
--   Be sure a Hub is associated to the Location you are installing the service into.
-
-1.  Click on **My Device Handlers**
-2.  Click **Settings** (top of page)
-3.  Click **Add New Repository** (bottom of dialog)
-4.  Enter `nutechsoftware` as the **owner**
-5.  Enter `alarmdecoder-smartthings` as the **name**
-6.  Enter `master` as the **branch**
-7.  Click **Save**
-8.  Click **Update From Repo** (top of page)
-9.  Check the boxes  
-    -   [x] `AlarmDecoder network appliance`  
-    -   [x] `AlarmDecoder virtual contact sensor`  
-    -   [x] `AlarmDecoder virtual smoke alarm`  
-    -   [x] `AlarmDecoder action button indicator`  
-    -   [x] `AlarmDecoder status indicator`  
-    -   [x] `AlarmDecoder virtual shock sensor`  
-    -   [x] `AlarmDecoder virtual motion detector`  
-    -   [x] `AlarmDecoder virtual carbon monoxide detector`  
-10. Check **Publish** (bottom of dialog)
-11. Click **Execute Update**
-
-## Install SmartApp (via github integration)
-
-1.  Click on **My SmartApps**
-2.  Click **Update From Repo** (top of page)
-3.  Check box for `alarmdecoder service`
-4.  Check **Publish** (bottom of dialog)
-5.  Click **Execute Update**
-6.  Adjust **@Field** settings as needed at the top of the **AlarmDecoder service** code and as well as any other noted changes needed for Hubitat or SmartThings in the header and **Publish** if changes are made.
-7.  Select the `alarmdecoder: AlarmDecoder service` smart app and then select your location on the right and press **Set Location**.  (Click the **Simulator** if you don't see these options)
-8.  Click the **Discover** button.  You may have to hit refresh to get your device to show up.  If it doesn't show up make sure you're running an up-to-date version of the webapp and that it is on the same netowrk as your SmartThings HUB.
-9.  Click **Select Devices** and select your AlarmDecoder.
-10. Click **Install**
-
--   notes  
-      a. This will generate new devices under **My Devices**  
-      b. If you **Uninstall** from **AlarmDecoder service** screen it will attempt to automatically remove all sub devices if they are not in use by SHM or other rules.  
-      c. You can remove blocking child items from the **My Devices** -> **Show Device** screen by selecting the **In Use By** item and deleting it.  
+The easiest way to install AlarmDecoder for Hubitat is to use [Hubitat Package Manager ](https://community.hubitat.com/t/beta-hubitat-package-manager/38016) and look for AlarmDecoder under the Integrations category
 
 ## Obtain an API key from the AlarmDecoder webapp
 
@@ -95,7 +56,7 @@ Navigate to <https://graph.api.smartthings.com> in your browser and login to you
 2.  Click **Manage API keys**
 3.  Click **Generate** for the desired webapp user (eg. `admin`)
 
-## Enabling SmartThings/Hubitat UPNP/SSDP Integration in the Webapp
+## Enabling Hubitat UPNP/SSDP Integration in the Webapp
 
 1.  Log into your AlarmDecoder webapp.
 2.  Click Settings
@@ -109,31 +70,6 @@ Navigate to <https://graph.api.smartthings.com> in your browser and login to you
 -   notes  
       a.  If the AlarmDecoder Web App restarts it will loose subscriptions. It may take 5 minutes to restore PUSH notification.  
       b.  Updating the **AlarmDecoder UI** device settings on the phone app or web-based IDE will force a new subscription.  
-
-## Configure AlarmDecoder device
-
-Using the SmartThings app **on your phone**
-1. Open up the SmartThings app **on your phone**  
-2. Tap **My Home** and select the **Things** tab  
-3. Select the **AlarmDecoder UI** device  
-4. Tap the gear icon to edit the device  
-5. Enter the API key you generated from the AlarmDecoder webapp  
-6. Enter the alarm code you'd like to use to arm/disarm your panel.  
-7. Select your panel type.  
-8. Zone sensors may be configured to open and close themselves when a zone is faulted.  For example, specifying zone 7 for Zonetracker Sensor #1 would trip that sensor whenever zone 7 is faulted.  
-9. Use **graph.api.smartthings.com** and modify the device type in the device editor. If the application needs the device to be a Smoke Alarm then change its device type to **AlarmDecoder virtual smoke alarm** in the device editor.  
-10. Using the devices preferences(gear) update the zone numbers and invert option for the **Zone Sensors**.  
-
-Using **graph.api.smartthings.com**
-1. Login to your SmartThings graph web-based IDE.  
-2. Select **My Devices**  
-3. Select the  **AlarmDecoder(AD2)** device for your HUBs location.  
-4. Click Preferences(**edit**) link.  
-5. Enter the Rest API key you generated from the AlarmDecoder webapp  
-6. Enter the alarm code you'd like to use to arm/disarm your panel.  
-7. In the Panel Type - Type of panel enter **ADEMCO** or **DSC** depending on the panel type.  
-8. Change the **Device Type** of the new **Zone Sensors** as desired by editing the device. If the application needs the device to be a Smoke Alarm then change its device type to **AlarmDecoder virtual smoke alarm** in the device editor.  
-9. Using the preferences page update the zone numbers and invert option for the **Zone Sensors**.
 
 ## Configure Contact ID switches
 
@@ -378,7 +314,7 @@ All 5800 sensors within range of the 5800 receiver are able to be monitored for 
 
 <a name="devicetypes"></a>
 
-## Alarm Decoder Device Handlers
+## Alarm Decoder Device Drivers
 
 The Device Type or Device Handler for a given virtual device can be changed at any time. If the application requires a Smoke Detector and does not support Contact Sensors simply change the Type in the device editor. AlarmDecoder virtual devices will receive a translated message from on/off to a message appropriate to the devices type and capabilities.  
 
