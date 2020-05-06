@@ -137,6 +137,7 @@ def getHubAction(action, method = null) {
 definition(
   name: "AlarmDecoder service",
   namespace: "alarmdecoder",
+
   author: "Nu Tech Software Solutions, Inc.",
   description: "AlarmDecoder (Service Manager)",
   category: "My Apps",
@@ -3218,7 +3219,7 @@ private String getDeviceKey() {
   if (isSmartThings())
     key = "${state.ip}:${state.port}"
   else if (isHubitat())
-    key = "a${state.ip}"
+    key = "${state.ip}"
 
   return key
 }
