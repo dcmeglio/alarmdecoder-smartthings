@@ -112,6 +112,7 @@ metadata {
     command "arm_stay"
     command "exit"
     command "arm_away"
+	command "arm_night"
     command "fire"
     command "fire1"
     command "fire2"
@@ -916,15 +917,18 @@ def arm_stay() {
  */
 def arm_night() {
   parent.logTrace("--- arm_night")
-  if (settings.panel_type == "ADEMCO") {
-    return send_keys("${user_code}33")
-  }
-  else if (settings.panel_type == "DSC") {
-    arm_stay()
-    return send_keys("*1")
-  }
+
+  def user_code = _get_user_code()
+  def keys = ""
+
+  if (settings.panel_type == "ADEMCO")
+    keys = "${user_code}33"
+  else if (settings.panel_type == "DSC")
+    keys = "<S4>*1"
   else
     log.warn("--- arm_night: unknown panel_type.")
+
+  return send_keys(keys)
 }
 
 /**

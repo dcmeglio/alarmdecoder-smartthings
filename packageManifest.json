@@ -3,7 +3,7 @@
   "author": "Nu Tech Software Solutions, Inc. & Dominick Meglio",
   "minimumHEVersion": "2.1.9",
   "licenseFile": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/LICENSE",
-  "dateReleased": "2020-05-05",
+  "dateReleased": "2020-05-10",
   "apps": [
     {
       "id": "142765a9-eb5e-4847-8ae5-8a1e9824ca8a",
@@ -12,7 +12,7 @@
       "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/smartapps/alarmdecoder/alarmdecoder-service.src/alarmdecoder-service.groovy",
       "required": true,
       "oauth": false,
-      "version": "3.0.0"
+      "version": "3.0.1"
     }
   ],
   "drivers": [
@@ -30,7 +30,7 @@
       "namespace": "alarmdecoder",
       "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-network-appliance.src/alarmdecoder-network-appliance.groovy",
       "required": true,
-      "version": "3.0.0"
+      "version": "3.0.1"
     },
     {
       "id": "8b4f6484-4549-4173-a57e-d69fa0ca0bc2",
