@@ -2354,10 +2354,10 @@ def monitorAlarmHandler(evt) {
         }
         /* Hubitat */
         else if (isHubitat()) {
-          if (evt.value == "armedAway") {
+          if (evt.value == "armingAway") {
             // do not send if already in that state.
             if (!device.getStateValue("panel_armed") &&
-              !device.getStateValue("panel_armed_stay")) {
+              !device.getStateValue("panel_armed_stay") && !device.getStateValue("panel_armed_night")) {
               device.arm_away()
             } else {
               logTrace "monitorAlarmHandler -- no send arm_away already set"
@@ -2365,7 +2365,7 @@ def monitorAlarmHandler(evt) {
           } else if (evt.value == "armedHome") {
             // do not send if already in that state.
             if (!device.getStateValue("panel_armed") &&
-              !device.getStateValue("panel_armed_stay")) {
+              !device.getStateValue("panel_armed_stay") && !device.getStateValue("panel_armed_night")) {
               device.arm_stay()
             } else {
               logTrace "monitorAlarmHandler -- no send arm_stay already set"
@@ -2373,15 +2373,15 @@ def monitorAlarmHandler(evt) {
           } else if (evt.value == "armedNight") {
 			// do not send if already in that state.
             if (!device.getStateValue("panel_armed") &&
-              !device.getStateValue("panel_armed_night")) {
+              !device.getStateValue("panel_armed_stay") && !device.getStateValue("panel_armed_night")) {
               device.arm_night()
             } else {
               logTrace "monitorAlarmHandler -- no send arm_night already set"
             }
-		  } else if (evt.value == "disarmed") {
+		  } else if (evt.value == "disarmed" || evt.value == "allDisarmed") {
             // do not send if already in that state.
             if (device.getStateValue("panel_armed") ||
-              device.getStateValue("panel_armed_stay")) {
+              device.getStateValue("panel_armed_stay") || device.getStateValue("panel_armed_night")) {
               device.disarm()
             } else {
               logTrace "monitorAlarmHandler -- no send disarm already " +
