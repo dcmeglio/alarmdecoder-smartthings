@@ -12,7 +12,8 @@
       "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/smartapps/alarmdecoder/alarmdecoder-service.src/alarmdecoder-service.groovy",
       "required": true,
       "oauth": false,
-      "version": "3.0.1"
+      "version": "3.0.1",
+	  "primary": true
     }
   ],
   "drivers": [
