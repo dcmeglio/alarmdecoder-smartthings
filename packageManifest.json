@@ -2,6 +2,7 @@
   "packageName": "AlarmDecoder Integration",
   "author": "Nu Tech Software Solutions, Inc. & Dominick Meglio",
   "minimumHEVersion": "2.1.9",
+  "releaseNotes": "Added a custom arm_instant command to the network appliance and a virtual button device to arm instant.\nNote: You will need to rebuild the virtual devices in the app for the arm instant button to be added.",
   "licenseFile": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/LICENSE",
   "dateReleased": "2020-05-10",
   "apps": [
@@ -12,7 +13,7 @@
       "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/smartapps/alarmdecoder/alarmdecoder-service.src/alarmdecoder-service.groovy",
       "required": true,
       "oauth": false,
-      "version": "3.0.1",
+      "version": "3.1.0",
 	  "primary": true
     }
   ],
@@ -31,7 +32,7 @@
       "namespace": "alarmdecoder",
       "location": "https://raw.githubusercontent.com/dcmeglio/alarmdecoder-smartthings/master/devicetypes/alarmdecoder/alarmdecoder-network-appliance.src/alarmdecoder-network-appliance.groovy",
       "required": true,
-      "version": "3.0.1"
+      "version": "3.1.0"
     },
     {
       "id": "8b4f6484-4549-4173-a57e-d69fa0ca0bc2",

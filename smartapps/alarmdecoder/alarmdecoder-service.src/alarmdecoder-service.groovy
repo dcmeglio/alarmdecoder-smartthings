@@ -1709,26 +1709,29 @@ def actionButton(id) {
   if (id.contains(":exit")) {
     d.exit()
   }
-  if (id.contains(":armAway")) {
+  else if (id.contains(":armAway")) {
     d.arm_away()
   }
-  if (id.contains(":armStay")) {
+  else if (id.contains(":armStay")) {
     d.arm_stay()
   }
-  if (id.contains(":chimeMode")) {
+  else if (id.contains(":chimeMode")) {
     d.chime()
   }
-  if (id.contains(":alarmPanic")) {
+  else if (id.contains(":alarmPanic")) {
     d.panic()
   }
-  if (id.contains(":alarmAUX")) {
+  else if (id.contains(":alarmAUX")) {
     d.aux()
   }
-  if (id.contains(":alarmFire")) {
+  else if (id.contains(":armInstant")) {
+    d.arm_instant()
+  }
+  else if (id.contains(":alarmFire")) {
     d.fire()
   }
   // Turn off alarm bell if pushed
-  if (id.contains(":alarmBell")) {
+  else if (id.contains(":alarmBell")) {
     def cd = getChildDevice("${id}")
     if (!cd) {
       log.info("actionButton: Could not clear '${id}'.")
@@ -1736,7 +1739,7 @@ def actionButton(id) {
     }
     _sendEventTranslate(cd, "off")
   }
-  if (id.contains(":CID-")) {
+  else if (id.contains(":CID-")) {
     def cd = getChildDevice("${id}")
     if (!cd) {
       log.info("actionButton: Could not clear device '${id}'.")
@@ -2857,6 +2860,9 @@ def addExistingDevices() {
 
       // Add AUX Alarm switch/indicator combo if it does not exist.
       addAD2VirtualDevices("alarmAUX", "AUX Alarm", false, true, false)
+
+      // Add AUX Alarm switch/indicator combo if it does not exist.
+      addAD2VirtualDevices("armInstant", "Instant Arm", false, true, false)
 
       // Add Disarm button if it does not exist.
       if (inputCreateDisarm) {

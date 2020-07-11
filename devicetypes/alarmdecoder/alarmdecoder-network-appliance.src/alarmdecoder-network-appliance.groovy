@@ -83,8 +83,8 @@ metadata {
         "armed",
         "armed_stay",
         "armed_stay_exit",
-		"armed_night",
-		"armed_night_exit",
+		    "armed_night",
+		    "armed_night_exit",
         "disarmed",
         "alarming",
         "fire",
@@ -112,7 +112,8 @@ metadata {
     command "arm_stay"
     command "exit"
     command "arm_away"
-	command "arm_night"
+	  command "arm_night"
+    command "arm_instant"
     command "fire"
     command "fire1"
     command "fire2"
@@ -927,6 +928,26 @@ def arm_night() {
     keys = "<S4>*1"
   else
     log.warn("--- arm_night: unknown panel_type.")
+
+  return send_keys(keys)
+}
+
+/**
+ * arm_instant()
+ * Sends an arm instant command to the panel
+ */
+def arm_instant() {
+  parent.logTrace("--- arm_instant")
+
+  def user_code = _get_user_code()
+  def keys = ""
+
+  if (settings.panel_type == "ADEMCO")
+    keys = "${user_code}7"
+  else if (settings.panel_type == "DSC")
+    keys = "<S4>*9"
+  else
+    log.warn("--- arm_instant: unknown panel_type.")
 
   return send_keys(keys)
 }
